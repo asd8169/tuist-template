@@ -7,8 +7,8 @@
 
 import ProjectDescription
 
-extension TargetDependency {
-    public enum SPM {
+public extension TargetDependency {
+    enum SPM {
         public static let ComposableArchitecture = external(name: "ComposableArchitecture")
         public static let FlexLayout = external(name: "FlexLayout")
         public static let PinLayout = external(name: "PinLayout")

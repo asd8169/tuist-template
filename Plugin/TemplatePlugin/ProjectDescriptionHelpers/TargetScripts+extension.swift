@@ -7,7 +7,7 @@
 
 import ProjectDescription
 
-extension TargetScript {
+public extension TargetScript {
     
     static let swiftLintRunScript = TargetScript.pre(
         path: .relativeToRoot("Scripts/SwiftLintRunScript.sh"),
