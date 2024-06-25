@@ -7,7 +7,7 @@
 
 import ProjectDescription
 
-public extension Scheme {
+extension Scheme {
     
     /// 지정된 타겟과 이름으로 Scheme 생성
     /// - Parameters:
