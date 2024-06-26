@@ -11,7 +11,13 @@ let packageSetting = PackageSettings(
         "ComposableArchitecture": .framework,
         "FlexLayout": .framework,
         "PinLayout": .framework,
-    ]
+    ],
+    baseSettings: .settings(
+        configurations: [
+            .debug(name: .dev),
+            .release(name: .prod)
+        ]
+    )
 )
 #endif
 
