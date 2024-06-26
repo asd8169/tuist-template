@@ -1,6 +1,7 @@
 import ProjectDescription
 import EnvironmentPlugin
 import TemplatePlugin
+import ConfigurationPlugin
 /// Project helpers are functions that simplify the way you define your project.
 /// Share code to create targets, settings, dependencies,
 /// Create your own conventions, e.g: a func that makes sure all shared targets are "static frameworks"
@@ -31,21 +32,22 @@ extension Project {
         infoPlist: InfoPlist = .default,
         sources: SourceFilesList = ["Sources/**"],
         resources: ResourceFileElements? = nil,
-        dependencies: [TargetDependency] = []
+        dependencies: [TargetDependency] = [],
+        schemes: [Scheme]? = nil
     ) -> Project {
-        
+
         // 기본 설정 정의
         let settings: Settings = .settings(
             base: [:],
             configurations: [
-                .debug(name: .debug),
-                .release(name: .release)
-            ], 
+                .debug(name: .dev, xcconfig: .relativeToRoot("XCConfig/Dev.xcconfig")),
+                .release(name: .prod, xcconfig: .relativeToRoot("XCConfig/Prod.xcconfig"))
+            ],
             defaultSettings: .recommended
         )
         
         // 앱 타겟 생성
-        let appTarget = Target.target(
+        let target = Target.target(
             name: name,
             destinations: destinations,
             product: product,
@@ -63,18 +65,30 @@ extension Project {
             name: "\(name)Tests",
             destinations: destinations,
             product: .unitTests,
-            bundleId: "\(organizationName).\(name)",
+            bundleId: "\(organizationName).\(name)Tests",
             deploymentTargets: deploymentTargets,
             infoPlist: .default,
             sources: ["Tests/**"],
-            dependencies: [.target(name: name)]
+            dependencies: [
+                .target(name: name)
+            ]
         )
         
-        // 스킴 생성
-        let schemes: [Scheme] = [.makeScheme(target: .debug, name: name)]
+        // 기본 Scheme
+        let defaultSchemes: [Scheme] = [.makeScheme(target: .dev, name: name)]
         
         // 타겟 배열 생성
-        let targets: [Target] = [appTarget, testTarget]
+        let targets: [Target] = [target, testTarget]
+//        // 스킴 생성
+//        let schemes: [Scheme]
+//        if targets.contains(where: { $0.product == .app }) {
+//            schemes = [
+//                .makeScheme(target: .dev, name: name),
+//                .makeScheme(target: .prod, name: name)
+//            ]
+//        } else {
+//            schemes = [.makeScheme(target: .dev, name: name)]
+//        }
         
         // Project 객체 반환
         return Project(
@@ -83,7 +97,7 @@ extension Project {
             packages: packages,
             settings: settings,
             targets: targets,
-            schemes: schemes
+            schemes: schemes ?? defaultSchemes
         )
     }
 }
