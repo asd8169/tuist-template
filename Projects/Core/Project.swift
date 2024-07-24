@@ -5,17 +5,17 @@
 //  Created by  p2noo on 6/22/24.
 //
 
+
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Feature",
-    resources: ["Resources/**"],
+    name: "Core",
     targets: [
         .implements(
-            modulePath: .feature(.Feature),
+            modulePath: .core(.Core),
             dependencies: [
-                .feature(implementation: .RootFeature),
+                .shared,
             ]
         )
     ]
