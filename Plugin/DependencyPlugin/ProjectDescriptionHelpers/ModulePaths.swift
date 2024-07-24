@@ -55,6 +55,7 @@ public extension ModulePaths {
     enum SharedModule: String, CaseIterable {
         case Shared
         case ThirdPartyLibrary
+        case CommonUI
     }
 }
 
