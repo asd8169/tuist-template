@@ -21,7 +21,8 @@ public struct TargetFactory {
         dependencies: [TargetDependency] = [],
         deploymentTargets: DeploymentTargets = env.deploymentTargets,
         infoPlist: InfoPlist =  .file(path: "Support/Info.plist"),
-        scripts: [TargetScript] = [.swiftLintRunScript]
+        scripts: [TargetScript] = [.swiftLintRunScript],
+        baseSettings: SettingsDictionary = [:]
     ) -> Target {
         return Target.target(
             name: name,
@@ -33,25 +34,29 @@ public struct TargetFactory {
             sources: sources,
             resources: resources,
             scripts: scripts,
-            dependencies: dependencies
+            dependencies: dependencies,
+            settings: .settings(
+                base:  baseSettings,
+                defaultSettings: .recommended
+            )
         )
     }
     
-//    public static func createTestTarget(
-//        name: String,
-//        bundleId: String,
-//        dependencies: [TargetDependency] = [],
-//        deploymentTargets: DeploymentTargets? = .iOS("15.0")
-//    ) -> Target {
-//        return Target.target(
-//            name: "\(name)Tests",
-//            destinations: env.destinations,
-//            product: .unitTests,
-//            bundleId: bundleId,
-//            deploymentTargets: deploymentTargets,
-//            infoPlist: .default,
-//            sources: ["Tests/**"],
-//            dependencies: dependencies
-//        )
-//    }
+    //    public static func createTestTarget(
+    //        name: String,
+    //        bundleId: String,
+    //        dependencies: [TargetDependency] = [],
+    //        deploymentTargets: DeploymentTargets? = .iOS("15.0")
+    //    ) -> Target {
+    //        return Target.target(
+    //            name: "\(name)Tests",
+    //            destinations: env.destinations,
+    //            product: .unitTests,
+    //            bundleId: bundleId,
+    //            deploymentTargets: deploymentTargets,
+    //            infoPlist: .default,
+    //            sources: ["Tests/**"],
+    //            dependencies: dependencies
+    //        )
+    //    }
 }
