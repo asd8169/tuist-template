@@ -7,9 +7,10 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "Shared",
+    name: ModulePaths.SharedModule.ThirdPartyLibrary.rawValue,
     targets: [
         .implements(
             modulePath: .shared(.Shared),

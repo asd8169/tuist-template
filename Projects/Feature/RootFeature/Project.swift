@@ -6,12 +6,11 @@
 //
 
 import ProjectDescription
-import DependencyPlugin
 import ProjectDescriptionHelpers
-import EnvironmentPlugin
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "RootFeature",
+    name: ModulePaths.FeatureModule.RootFeature.rawValue,
     targets: [
         .implements(
             modulePath: .feature(.RootFeature),
