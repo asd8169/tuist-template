@@ -8,9 +8,10 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 import EnvironmentPlugin
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "CommonUI",
+    name: ModulePaths.SharedModule.CommonUI.rawValue,
     resources: ["Resources/**"],
     targets: [
         .implements(

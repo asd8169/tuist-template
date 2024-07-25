@@ -8,9 +8,10 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "Core",
+    name: ModulePaths.CoreModule.Core.rawValue,
     targets: [
         .implements(
             modulePath: .core(.Core),

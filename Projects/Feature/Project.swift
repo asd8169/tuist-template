@@ -7,9 +7,10 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
 
 let project = Project.makeModule(
-    name: "Feature",
+    name: ModulePaths.FeatureModule.Feature.rawValue,
     resources: ["Resources/**"],
     targets: [
         .implements(
