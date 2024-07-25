@@ -10,8 +10,13 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Service",
-    product: .staticFramework,
-    dependencies: [
-        .project(target: "ThirdPartyLibrary", path: .relativeToRoot("Projects/ThirdPartyLibrary"))
-    ])
+    name: "Core",
+    targets: [
+        .implements(
+            modulePath: .core(.Core),
+            dependencies: [
+                .shared,
+            ]
+        )
+    ]
+)

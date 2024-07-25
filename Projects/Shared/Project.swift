@@ -2,21 +2,22 @@
 //  Project.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by  p2noo on 6/22/24.
+//  Created by  p2noo on 7/25/24.
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.makeModule(
-    name: "Feature",
-    resources: ["Resources/**"],
+    name: "Shared",
     targets: [
         .implements(
-            modulePath: .feature(.Feature),
+            modulePath: .shared(.Shared),
             dependencies: [
-                .feature(implementation: .RootFeature),
+                .shared(implementation: .ThirdPartyLibrary),
+                .shared(implementation: .CommonUI),
             ]
-        )
+        ),
     ]
 )
+
