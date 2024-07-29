@@ -12,7 +12,7 @@ import ProjectDescription
 extension TargetDependency {
     
     public static var feature: Self {
-        print("feature target : \(ModulePaths.FeatureModule.Feature.rawValue)")
+        
         return .project(target: ModulePaths.FeatureModule.Feature.rawValue, path: .relativeToRoot("Projects/Feature"))
     }
     
@@ -71,7 +71,7 @@ extension TargetDependency {
 extension TargetDependency {
     // MARK: - Core
     public static var core: Self {
-        print("core target : \(ModulePaths.CoreModule.Core.rawValue)")
+        
         return .project(target: ModulePaths.CoreModule.Core.rawValue, path: .relativeToRoot("Projects/Core"))
     }
     
@@ -103,7 +103,7 @@ extension TargetDependency {
     
     // MARK: - Shared
     public static var shared: Self {
-        print("shared target : \(ModulePaths.SharedModule.Shared.rawValue)")
+      
         return .project(target: ModulePaths.SharedModule.Shared.rawValue, path: .relativeToRoot("Projects/Shared"))
     }
 
