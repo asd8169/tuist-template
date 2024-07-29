@@ -15,7 +15,7 @@ import EnvironmentPlugin
 extension Target {
     
     public static func implements(modulePath: ModulePaths, product: Product = .staticLibrary , infoPlist: InfoPlist = .default, resources: ResourceFileElements = [], dependencies: [TargetDependency] = [], baseSettings: SettingsDictionary = [:]) -> Target {
-        print("implements name : " + modulePath.moduleName)
+        
         return TargetFactory.createTarget(
             name: modulePath.moduleName,
             product: product,
@@ -32,7 +32,7 @@ extension Target {
 extension Target {
     
     public static func interface(modulePath: ModulePaths, infoPlist: InfoPlist = .default, dependencies: [TargetDependency] = []) -> Target {
-        print("interface name : " + modulePath.moduleName)
+        
         return TargetFactory.createTarget(
             name: modulePath.moduleName + "Interface",
             product: .staticLibrary,
@@ -47,7 +47,7 @@ extension Target {
 extension Target {
     
     public static func testing(modulePath: ModulePaths, product: Product = .staticFramework, infoPlist: InfoPlist = .default, dependencies: [TargetDependency] = []) -> Target {
-        print("Testing name : " + modulePath.moduleName)
+        
         return TargetFactory.createTarget(
             name: modulePath.moduleName + "Testing",
             product: .staticLibrary,
@@ -62,7 +62,7 @@ extension Target {
 extension Target {
     
     public static func tests(modulePath: ModulePaths, infoPlist: InfoPlist = .default, dependencies: [TargetDependency] = []) -> Target {
-        print("Testing name : " + modulePath.moduleName)
+        
         return TargetFactory.createTarget(
             name: modulePath.moduleName + "Test",
             product: .unitTests,
@@ -77,7 +77,7 @@ extension Target {
 extension Target {
     
     public static func example(modulePath: ModulePaths, infoPlist: InfoPlist = .default, dependencies: [TargetDependency] = []) -> Target {
-        print("Testing name : " + modulePath.moduleName)
+        
         return TargetFactory.createTarget(
             name: modulePath.moduleName + "Example",
             product: .app,
