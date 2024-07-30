@@ -9,14 +9,16 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 import DependencyPlugin
 
+
 let project = Project.makeModule(
-    name: ModulePaths.FeatureModule.Feature.rawValue,
-    resources: ["Resources/**"],
+    name: ModulePaths.SharedModule.ThirdPartyLibrary.rawValue,
     targets: [
         .implements(
-            modulePath: .feature(.Feature),
+            modulePath: .shared(.ThirdPartyLibrary),
+            product: .framework,
             dependencies: [
-                .feature(implementation: .RootFeature),
+                .SPM.FlexLayout,
+                .SPM.PinLayout,
             ]
         )
     ]

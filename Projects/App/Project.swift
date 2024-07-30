@@ -7,13 +7,10 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import DependencyPlugin
+import EnvironmentPlugin
 
-//
-//let schemes: [Scheme] = [
-//    .makeScheme(target: .dev, name: "Sample-Dev"),
-//    .makeScheme(target: .prod, name: "Sample-Prod")
-//]
-//
+
 let schemes: [Scheme] = [
     .scheme(
         name: "Sample-DEV",
@@ -40,15 +37,20 @@ let schemes: [Scheme] = [
 ]
 
 let project = Project.makeModule(
-    name: "Sample",
-    product: .app,
-    // Info.plist 파일 직접 지정
-    infoPlist: .file(path: "Support/Info.plist"),
+    name: env.name,
     resources: ["Resources/**"],
-    dependencies: [
-        .project(target: "Feature", path: .relativeToRoot("Projects/Feature"))
-    ],
-    schemes: schemes
+    schemes: schemes,
+    targets: [
+        .implements(
+            modulePath: .app(),
+            product: .app,
+            infoPlist: .file(path: "Support/Info.plist"),
+            resources: ["Resources/**"],
+            dependencies: [
+                .feature
+            ]
+        )
+    ]
 )
 
 

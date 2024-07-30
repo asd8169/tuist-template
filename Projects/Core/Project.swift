@@ -5,18 +5,18 @@
 //  Created by  p2noo on 6/22/24.
 //
 
+
 import ProjectDescription
 import ProjectDescriptionHelpers
 import DependencyPlugin
 
 let project = Project.makeModule(
-    name: ModulePaths.FeatureModule.Feature.rawValue,
-    resources: ["Resources/**"],
+    name: ModulePaths.CoreModule.Core.rawValue,
     targets: [
         .implements(
-            modulePath: .feature(.Feature),
+            modulePath: .core(.Core),
             dependencies: [
-                .feature(implementation: .RootFeature),
+                .shared,
             ]
         )
     ]
